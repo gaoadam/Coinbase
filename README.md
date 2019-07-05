@@ -1,7 +1,8 @@
 # Coinbase
-Scrape, analyze, and visualize cryptocurrency pricing data from Coinbase
+In this project, I use the Python library Beautifulsoup to scrape cryptocurrency pricing data from Coinbase. I then visualize and analyze
+the cryptocurrency data using certain methods.
 
-READ Writeup.pdf for a Description on how the files are used and how results are obtained/analyzed.
+Please read 'Writeup.pdf' for a brief summary of the python files' uses and examples of how the results are visualized and analyzed.
 
 # File Descriptions:
 ##   Scrape-Coinbase.py:
