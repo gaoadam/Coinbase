@@ -20,6 +20,7 @@ Quantitative operations performed:
 """
 
 import numpy as np
+import statsmodels.tsa.stattools as stt
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
@@ -49,10 +50,17 @@ xlfilenames = open(path_load + 'filenames.txt', mode='r')
 
 #Change directory to be saved in
 path_home = os.getcwd() + "\\" +foldername + "-analysis" + "\\"
-path_plot = path_home + "plots-" + time_duration + "\\"
-if not os.path.exists(path_plot):
-    os.makedirs(path_plot)
+path_plot2 = path_home + "bargraphs-" + time_duration + "\\"
+if not os.path.exists(path_plot1):
+    os.makedirs(path_plot1)
+if not os.path.exists(path_plot2):
+    os.makedirs(path_plot2)
     
+#Create dataframe in which to store statisitcal analysis data
+Stat_columns = ['idkey', 'currency', 'ADFstatistic', 'pvalue',
+                'CriticalValue 1%', 'CriticalValue 5%', 'CriticalValue 10%',]
+Statistical_Analysis = pd.DataFrame(data= [], columns = Stat_columns)
+
 
 for row in xlfilenames:
     row = eval(row.strip('\n'))
@@ -62,3 +70,55 @@ for row in xlfilenames:
     
     #Adjust time into seconds
     df['time'] = (df['time'] - df['time'][0])/time_unit
+    
+    """
+    
+    Begin Statistical Analysis Methods
+    
+    """
+    #Rolling Mean
+    
+    
+    
+    #Dickey-Fully Test
+    #Note CriticalValues are not used in this case.
+    DickeyFully = stt.adfuller(df['price'])
+    ADFstatistic = DickeyFully[0]
+    pvalue = DickeyFully[1]
+    CriticalValues = DickeyFully[4]
+    
+    #Append values to Statistical_Analysis data dataframe
+    idkey = xlfilename.split('-')[0]
+    currency = xlfilename.split('-')[1]
+    
+    df_appendable = pd.DataFrame(data = [[idkey, currency, ADFstatistic, pvalue,
+                                         CriticalValues['1%'], CriticalValues['5%'], CriticalValues['10%']]],
+                                columns = Stat_columns)
+    Statistical_Analysis = Statistical_Analysis.append(df_appendable, ignore_index=True)
+"""
+
+Plot Data and save it
+
+"""
+#Save data to csv format
+Statistical_Analysis.to_csv(path_home + 'Statistical_Analysis.csv')
+
+#Plot statistical data: ADFstatistic
+ax_ADFstatistic = Statistical_Analysis.sort_values('ADFstatistic',
+                                                   ascending = 'False').plot.bar(x = 'currency', y='ADFstatistic',
+                                                                      figsize = (10,6))
+fig = ax_ADFstatistic.get_figure()
+plt.title('ADFstatistic, past ' + time_duration)
+plt.tight_layout()
+plt.savefig(path_plot2 + 'ADFstatistic.png')
+plt.close(fig)
+
+#Plot statistical data: pvalue
+ax_pvalue = Statistical_Analysis.sort_values('ADFstatistic',
+                                                   ascending = 'False').plot.bar(x = 'currency', y='pvalue',
+                                                                      figsize = (10,6))
+fig = ax_pvalue.get_figure()
+plt.title('p-value, past ' + time_duration)
+plt.tight_layout()
+plt.savefig(path_plot2 + 'pvalues.png')
+plt.close(fig)

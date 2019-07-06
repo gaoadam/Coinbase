@@ -27,7 +27,7 @@ import os
 Data parameters
 """
 #specify over how long we wish the data to take place
-time_duration = 'all'
+time_duration = 'week'
 time_unit = 1000
 
 """
