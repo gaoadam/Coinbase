@@ -1,6 +1,6 @@
 # Coinbase
-In this project, I use the Python library Beautifulsoup to scrape cryptocurrency pricing data from Coinbase. I then visualize and analyze
-the cryptocurrency data using certain methods.
+In this project, I use the Python library BeautifulSoup to scrape cryptocurrency pricing data from Coinbase. I then visualize and analyze
+the stationarity of the pricing using the augmented Dickey-Fuller method.
 
 Please read 'Writeup.pdf' for a brief summary of the python files' uses and examples of how the results are visualized and analyzed.
 
