@@ -40,7 +40,7 @@ Extract data from Excel format to pandas DataFrame format
 ~~~~~~~~SPECIFY FOLDER NAME HERE~~~~~~~~~~~~~
 """
 #Folder Name:
-foldername = '2019-7-4-22-47-35'
+foldername = '2019-7-6-21-12-3'
 
 #Folder path
 path_load = os.getcwd() + "\\" + foldername + "\\"
@@ -51,8 +51,6 @@ xlfilenames = open(path_load + 'filenames.txt', mode='r')
 #Change directory to be saved in
 path_home = os.getcwd() + "\\" +foldername + "-analysis" + "\\"
 path_plot2 = path_home + "bargraphs-" + time_duration + "\\"
-if not os.path.exists(path_plot1):
-    os.makedirs(path_plot1)
 if not os.path.exists(path_plot2):
     os.makedirs(path_plot2)
     

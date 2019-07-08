@@ -27,7 +27,7 @@ import os
 Data parameters
 """
 #specify over how long we wish the data to take place
-time_duration = 'week'
+time_duration = 'year'
 time_unit = 1000
 
 """
@@ -84,6 +84,10 @@ for row in xlfilenames:
         length_tick = length_hour
         unit_tick = length_hour
         xunit = 'hours'
+    elif time_duration == 'week':
+        length_tick = length_day
+        unit_tick = length_day
+        xunit = 'days'    
     elif time_duration == 'month':
         length_tick = 2*length_day
         unit_tick = length_day
