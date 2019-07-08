@@ -16,6 +16,8 @@ Edit the value of foldername to specify which folder is to be read. The folder
 must first be created from scraped data by Scrape-Coinbase.py
 
 Quantitative operations performed:
+    
+    Augmented Dickey Fuller Method
 
 """
 
