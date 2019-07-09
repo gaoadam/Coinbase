@@ -31,7 +31,7 @@ import os
 Data parameters
 """
 #specify over how long we wish the data to take place
-time_duration = 'day'
+time_duration = 'year'
 time_unit = 1000
 
 """
@@ -42,7 +42,7 @@ Extract data from Excel format to pandas DataFrame format
 ~~~~~~~~SPECIFY FOLDER NAME HERE~~~~~~~~~~~~~
 """
 #Folder Name:
-foldername = '2019-7-6-21-12-3'
+foldername = '2019-7-4-22-47-35'
 
 #Folder path
 path_load = os.getcwd() + "\\" + foldername + "\\"
@@ -101,7 +101,7 @@ Plot Data and save it
 
 """
 #Save data to csv format
-Statistical_Analysis.to_csv(path_home + 'Statistical_Analysis.csv')
+Statistical_Analysis.to_csv(path_home + 'Statistical_Analysis_' + time_duration + '.csv')
 
 #Plot statistical data: ADFstatistic
 ax_ADFstatistic = Statistical_Analysis.sort_values('ADFstatistic',
