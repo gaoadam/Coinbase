@@ -4,6 +4,8 @@ the stationarity of the pricing using the augmented Dickey-Fuller method.
 
 Please read 'Writeup.pdf' for a brief summary of the python files' uses and examples of how the results are visualized and analyzed.
 
+Folders named after dates like 2019-7-4-22-47-35 contain examples of the data visualization files which the .py files may produce.
+
 # File Descriptions:
 ##   Scrape-Coinbase.py:
 
